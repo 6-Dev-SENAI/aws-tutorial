@@ -172,7 +172,7 @@
         </div>
         <div class="conteudo">
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 1</p>
+            <p class="tituloSubConteudo">Etapa 1</p>
             <p class="descricao">
               Aqui selecionamos o Sistema Operacional da nossa máquina virtual
               hospedada na Nuvem da AWS.
@@ -193,7 +193,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 2</p>
+            <p class="tituloSubConteudo">Etapa 2</p>
             <p class="descricao">
               Aqui já está selecionado o tipo <i>T2 Micro</i> que nos dá acesso
               a uma máquina "gratuita" (dentro dos serviços do usuário root),
@@ -211,7 +211,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 3</p>
+            <p class="tituloSubConteudo">Etapa 3</p>
             <p class="descricao">
               Nesta tela não adicionaremos e nem mudaremos nada, mantendo o
               padrão da máquina já selecionada, basta clicar em <br /><span
@@ -228,7 +228,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 4</p>
+            <p class="tituloSubConteudo">Etapa 4</p>
             <p class="descricao">
               Assim como o tipo da máquina, aqui vamos deixar o já selecionado
               padrão gratuito, disponível pelo usuário root; no caso de
@@ -244,7 +244,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 5</p>
+            <p class="tituloSubConteudo">Etapa 5</p>
             <p class="descricao">
               Para agora, vamos adicionar a Tag "Name" no campo onde está
               <i>Chave</i> e "6dev", sendo que esse valor pode ser qualquer nome
@@ -268,7 +268,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 6</p>
+            <p class="tituloSubConteudo">Etapa 6</p>
             <img
               src="./assets/images/13-vm-security-group.jpg"
               alt="vmSecGroup"
@@ -311,7 +311,7 @@
           </div>
           <hr />
           <div class="subConteudo">
-            <p class="tituloSubCOnteudo">Etapa 7</p>
+            <p class="tituloSubConteudo">Etapa 7</p>
             <p class="descricao">
               Ao confirmar, essa tela será apenas uma tela de verificação das
               informações descritas da máquina e então da inicialização da
@@ -408,6 +408,280 @@
             da nossa máquina e então, mais pra frente, entraremos em mais
             detalhes desse IP.
           </p>
+        </div>
+      </div>
+      <div class="area-conteudo">
+        <p class="titulo">Download do Putty</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Para fazer o download do Putty basta acessar
+            <a
+              href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html"
+              >esta página</a
+            >!
+          </p>
+          <img
+            src="./assets/images/20-putty-install.jpg"
+            alt="puttyInstall"
+            class="image"
+            title="Versões do puTTy"
+          />
+          <p class="descricao">
+            Em seguida selecione o arquivo para download de acordo com a sua
+            máquina e faça a instalação, num padrão <i>next, next & ready</i>.
+          </p>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Após a instalação do Putty pesquise por "putty gen" em sua máquina e
+            abra-o (sigo o exemplo na imagem):
+          </p>
+          <img
+            src="./assets/images/21-putty-gen.jpg"
+            alt="puttyGen"
+            class="image"
+            title="Pesquise por puTTy Gen"
+          />
+          <hr />
+          <p class="descricao">
+            Ao abrir a janela "PuTTY Key Generator" clique em
+            <span class="proximoBtn">Load</span> para carregar o arquivo
+            <i>.pem</i> e transformá-lo em <i>.ppk</i>.
+          </p>
+          <img
+            src="./assets/images/22-putty-gen-start.jpg"
+            alt="puTTyGenStart"
+            title="Clique em 'Load'"
+            class="image"
+          />
+          <p class="descricao">
+            Na janela "Load private key", vá até o menu ao lado do nome do
+            arquivo e mude de <strong>PuttyPrivate Files</strong> para
+            <i>AllFiles</i> para procurar a chave que foi baixada anteriormente,
+            ao selecioná-la clique em <span class="proximoBtn">Abrir</span>;
+          </p>
+          <img
+            src="./assets/images/24-putty-gen-chavePem.jpg"
+            alt="puTTyGenChavePem"
+            title="Abra o seu par de chaves"
+            class="image"
+          />
+          <div class="subConteudo">
+            <p class="tituloSubConteudo">Finalização</p>
+            <p class="descricao">
+              Um alerta de "PuTTYgen Notice" aparecerá, apenas clique em
+              <span class="proximoBtn">OK</span>
+            </p>
+            <img
+              src="./assets/images/25-putty-gen-save-success.jpg"
+              alt="25-putty-gen-save-success"
+              title="Chave.pem importada com sucesso"
+              class="image"
+            />
+            <p>
+              Ao retornar para janela "PuTTY Key Generator", clique em
+              <span class="proximoBtn">Save private key</span> , onde novamente
+              aparecerá um alerta, dessa vez um ("PuTTYgen Warning"), apenas
+              confirme este alerta em <span class="proximoBtn">Sim</span>
+            </p>
+            <img
+              src="./assets/images/26-putty-gen-save-confirmation.jpg"
+              alt="puTTyGenSaved"
+              title="Clique em SIM para confirmar a salvação"
+              class="image"
+            />
+            <p>
+              Quando voltar a janela principal, nomeie o novo arquivo, em
+              formato <i>.ppk</i>, de acordo com sua preferência, recomendamos
+              que seja o mesmo nome do <i>.pem</i>, e clique em
+              <span class="proximoBtn">Salvar</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="area-conteudo">
+        <p class="titulo">Subindo o Apache2</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Para subir o Apache em sua máquina recém criada são necessários
+            apenas alguns passos simples, primeiramente pesquise por PuTTY na
+            barra de pesquisa
+          </p>
+          <img
+            src="./assets/images/27-putty.jpg"
+            alt="putty"
+            title="puTTy"
+            class="image"
+          />
+          <hr />
+          <p class="descricao">
+            Localize a lista de opções “Category”, na janela “PuTTY
+            Configuration” que se abrirá
+          </p>
+          <img
+            src="./assets/images/28-putty-start.jpg"
+            alt="puTTyStart"
+            title="Menu do PuTTy"
+            class="image"
+          />
+          <p class="descricao">
+            Ainda nesta janela do PuTTY, em “Category”, abra a aba <i>SSH</i>
+          </p>
+          <img
+            src="./assets/images/29-putty-ssh.jpg"
+            alt="puTTySSH"
+            title="PuTTy SSH"
+            class="image"
+          />
+          <p class="descricao">
+            E nesta aba, selecione a opção <strong>Auth</strong>
+          </p>
+          <img
+            src="./assets/images/30-putty-ssh-auth.jpg"
+            alt="puTTySShAuth"
+            class="image"
+            title="PuTTy SSH -> Auth"
+          />
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Na janela de “Options controlling SSH authentication” clique em
+            <span class="proximoBtn">Browse...</span> para procurar sua chave<i
+              >.ppk</i
+            >
+          </p>
+          <img
+            src="./assets/images/31-putty-add-ppk.jpg"
+            alt="addPPK"
+            title="Selecione sua chave.ppk através do Browser"
+            class="image"
+          />
+          <hr />
+          <p class="descricao">
+            Na tela de <i>Select private key file</i> procure entre seus
+            arquivos a chave de sua máquina virtual salva em formato
+            <strong>.ppk</strong>
+          </p>
+          <img
+            src="./assets/images/32-selecionar-ppk.jpg"
+            alt="selectPpk"
+            class="image"
+            title="Selecione sua chave.ppk"
+          />
+          <hr />
+          <p class="descricao">
+            Ao voltar à janela do PuTTy, em “Category vá na aba
+            <i>Session</i> e na barra <strong>Host Name (or IP adress)</strong>,
+            digite o IP público de sua instância, que separamos lá trás e clique
+            no botão <span class="proximoBtn">Open</span>
+            localizado no canto inferior direito da janela!
+          </p>
+          <img
+            src="./assets/images/33-putty-connection.jpg"
+            alt="puttyConnection"
+            class="image"
+            title="Abra a conexão indo em Open"
+          />
+          <hr />
+          <p class="descricao" id="alerta">
+            Abrirá uma caixa de alerta denominada “PuTTY Security Alert”, basta
+            clicar em “Accept” para continuar o processo
+          </p>
+          <img
+            src="./assets/images/34-putty-alert-accept.jpg"
+            alt="acceptAlert"
+            title="Aceite o alerta do PuTTy"
+            class="image"
+          />
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            O PuTTY irá inicar um painel de comando, solicitando o usuário em
+            <i>Login as: </i>, no caso desta
+            <abbr title="Virtual Machine - Máquina Virtual">VM</abbr> o usuário
+            é “ubuntu”, basta inserir na linha solicitada
+          </p>
+          <img
+            src="./assets/images/35-vmPutty-login.jpg"
+            alt="vmLogin"
+            class="image"
+          />
+          <hr />
+          <p class="descricao">
+            Após a inicialização de uma máquina com sistemas operacionais Linux
+            o primeiro é necessário fazer o update dos arquivos, basta inserir o
+            comando <i>sudo apt update</i> no prompt; seguido também do comando
+            <i>sudo apt upgrade</i>
+          </p>
+          <img
+            src="./assets/images/36-vmPutty-aptUpdate.jpg"
+            alt="aptUpdate"
+            title="sudo apt update"
+            class="image"
+          />
+          <img
+            src="./assets/images/37-vmPutty-aptUpgrade.jpg"
+            alt="aptUpgrade"
+            title="suto apt upgrade"
+            class="image"
+          />
+          <hr />
+          <img
+            src="./assets/images/38-vmPutty-upgradeConfirmation.jpg"
+            alt="aptUpgrade"
+            title="Confirme o upgrade com 'y' para atualizar os arquivos"
+            class="image"
+          />
+          <img
+            src="./assets/images/39-vmPutty-upgrading.jpg"
+            alt="aptUpgrading"
+            title="Atualizando"
+            class="image"
+          />
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Após a finalização da atualização, basta inserir o comando
+            <i>sudo apt install <strong>apache2</strong></i> no prompt para
+            iniciar o processo de instalação o Apache <br />
+            Durante a instalação, irá pedir que pressione <i>y</i> para permitir
+            a instalação do Apache
+          </p>
+          <img
+            src="./assets/images/40-vmPutty-aptInstallApache2.jpg"
+            alt="aptInstall"
+            title="sudo apt install apache2"
+            class="image"
+          />
+          <img
+            src="./assets/images/41-vmPutty-confirmation.jpg"
+            alt="apacheConfirm"
+            title="Confirmar a instalação do Apache"
+            class="image"
+          />
+          <img
+            src="./assets/images/42-vmPutty-apache-installing.jpg"
+            alt="apacheInstalling"
+            title="Apache sendo instalado"
+            class="image"
+          />
+          <hr />
+        </div>
+      </div>
+      <div class="area-conteudo">
+        <p class="titulo">Finalizando</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Para confirmar se o Apache foi instalado e está rodando, basta
+            digitar seu IP público em seu navegador padrão, assim você será
+            levado para uma página com o seguinte conteúdo:
+          </p>
+          <img
+            src="./assets/images/43-site-apache.jpg"
+            alt="site"
+            title="Este é um template padrão do Apache que fica rodando na sua instalação"
+            class="image"
+          />
         </div>
       </div>
     </div>
