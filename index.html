@@ -1,14 +1,433 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png"
+      type="image/x-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/style.css" />
     <title>AWS Tutorial</title>
-</head>
-<body>
-    <h1>
-        Be Welcome to Our new Repo.
-    </h1>
-</body>
+  </head>
+  <body>
+    <header>
+      <p class="cabecalho">6-DEV</p>
+    </header>
+    <div class="container">
+      <div class="area-conteudo">
+        <p class="titulo">AWS</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Amazon Web Services, também conhecido como AWS, é uma plataforma de
+            serviços de computação em nuvem, que formam uma plataforma de
+            computação na nuvem oferecida pela Amazon.com. Os serviços são
+            oferecidos em várias geográficas distribuídas pelo mundo.
+          </p>
+          <p class="descricao">
+            Neste pequeno tutorial, vamos demonstrar como criar uma máquina
+            virtual de Ubuntu Server na AWS, utilizando o recurso de EC2, e
+            hospedar um site <i>default</i> no servidor através do Apache2.
+          </p>
+          <p class="descricao">
+            Vamos seguir uma sequência lógica através de cores, pouco a pouco,
+            passando pelos passos:
+          </p>
+          <ol class="lista-logica">
+            <li>Login na AWS</li>
+            <li>Criação da Máquina Virtual</li>
+            <li>Download do Putty</li>
+            <li>Conversão da Chave</li>
+            <li>Subir Apache2</li>
+          </ol>
+        </div>
+      </div>
+      <div class="area-conteudo">
+        <p class="titulo">Login na AWS</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Para iniciarmos, vamos entrar no site do
+            <a href="https://aws.amazon.com/pt/console/">Console da AWS</a> para
+            termos acessos à função do EC2.
+          </p>
+          <p class="descricao">Ao abrirmos, aparecerá uma imagem assim:</p>
+          <img
+            src="./assets/images/0-aws-login.jpg"
+            alt="awsLogin"
+            class="image"
+            title="Clique em 'Fazer login novamente' | 'Fazer login na AWS'"
+          />
+          <p class="descricao">
+            Vamos entrar em "Fazer login novamente"; pode ser que apareça como
+            "Fazer Login na AWS".
+          </p>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Ao entrarmos, chegaremos numa tela perguntando se somos o usuário
+            root (geralmente, donos de uma conta) ou se somos usuario
+            <abbr
+              title="Integration and Management - (Gerenciamento e Integração)"
+              >IAM</abbr
+            >
+            que nos permite ter acesso a uma conta gerenciado por outro usuário,
+            no caso o usuário root.
+          </p>
+          <img
+            src="./assets/images/1-aws-iam-id.jpg"
+            alt="iamId"
+            class="image"
+            title="Selecione Usuário IAM"
+          />
+          <p class="descricao">
+            Para prosseguirmos, precisaremos ter acesso a um IAM ID
+            disponibilizado pelo usuário root. Após indicado o ID, seguiremos ao
+            <span id="proximoBtn" class="passarBtn">Próximo</span> onde vamos
+            encontrar a tela para inserir o nome de usuário e senha.
+          </p>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Aqui, colocaremos o nosso usuário e senha padrão definida pelo
+            usuário root.
+            <abbr title="Observação">Obs.:</abbr>
+            <span class="obsSublinhada"
+              >No seu primeiro acesso, será necessário trocar a senha padrão por
+              uma nova. Basta colocar a senha padrão em "Senha antiga" e definir
+              uma nova senha.
+            </span>
+          </p>
+          <img
+            src="./assets/images/2-aws-iam.jpg"
+            alt="iam"
+            class="image"
+            title="Informe as credências"
+          />
+          <p class="descricao">
+            Siga para <span id="entrarBtn" class="passarBtn">Entrar</span>
+          </p>
+          <p class="descricao">
+            Feito isso, você já estará na tela padrão do Console da AWS.
+          </p>
+          <img
+            src="./assets/images/3-aws-ec2.jpg"
+            alt=""
+            class="image"
+            title="Tela principal da AWS"
+          />
+        </div>
+      </div>
+      <div class="area-conteudo">
+        <p class="titulo">Criação da Máquina Virtual</p>
+        <div class="conteudo">
+          <p class="descricao">
+            Após realizar o login no site da AWS, vá barra de pesquisa procure
+            por "EC2" e selecione-o clicando em cima do nome:
+          </p>
+          <img
+            src="./assets/images/4-ec2-pesquisa.jpg"
+            alt="ec2"
+            class="image"
+            title="Barra de Pesquisa - Selecione EC2"
+          />
+          <p class="descricao">
+            Ao entrar nessa opção, carregará uma tela com as funções e serviços
+            da AWS
+          </p>
+          <img
+            src="./assets/images/5-ec2-menu.jpg"
+            alt="ec2-menu"
+            class="image"
+            title="Tela principal do EC2 - MENU"
+          />
+        </div>
+        <hr />
+        <div class="conteudo">
+          <p class="descricao">
+            Ao entrarmos nessa tela, partiremos agora para a criação da máquina
+            virtual, ou como é nomeado na AWS - Instância.
+          </p>
+          <p class="descricao">
+            Para começar, vamos em
+            <span id="execInstancia">Executar Instância</span> e clicar na seta,
+            para mostrar as opções disponíveis.
+          </p>
+          <img
+            src="./assets/images/6-instancia-start.jpg"
+            alt="start-instance"
+            class="image"
+            title="Clique na seta do botão laranja e logo após 'Executar Instância'"
+          />
+          <p class="descricao">
+            Dentre as opções listadas acima, vamos em "Executar Instância"
+          </p>
+        </div>
+        <div class="conteudo">
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 1</p>
+            <p class="descricao">
+              Aqui selecionamos o Sistema Operacional da nossa máquina virtual
+              hospedada na Nuvem da AWS.
+            </p>
+            <p class="descricao">
+              No nosso caso, selecionaremos o sistema Ubuntu Server 20.04 LTS,
+              que será onde hospedaremos o nosso servidor web:
+            </p>
+            <img
+              src="./assets/images/7-vm-ubuntu.jpg"
+              alt="vmUbuntu"
+              class="image"
+              title="Selecione Ubuntu Server 20.04 LTS"
+            />
+            <p class="descricao">
+              Basta clicar em <span class="passarBtn">Selecionar</span>
+            </p>
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 2</p>
+            <p class="descricao">
+              Aqui já está selecionado o tipo <i>T2 Micro</i> que nos dá acesso
+              a uma máquina "gratuita" (dentro dos serviços do usuário root),
+              então basta clicar em
+              <span class="proximoBtn"
+                >Próximo: Configure os detalhes da instância</span
+              >
+            </p>
+            <img
+              src="./assets/images/8-vm-tipo.jpg"
+              alt="vmTipo"
+              class="image"
+              title="Selecione T2 Micro"
+            />
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 3</p>
+            <p class="descricao">
+              Nesta tela não adicionaremos e nem mudaremos nada, mantendo o
+              padrão da máquina já selecionada, basta clicar em <br /><span
+                class="proximoBtn"
+                >Próximo: Adicionar armazenamento</span
+              >
+            </p>
+            <img
+              src="./assets/images/9-vm-detalhe.jpg"
+              alt="vmDetalhe"
+              class="image"
+              title="Apenas vá para 'Próximo: Adicionar Armazenamento'"
+            />
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 4</p>
+            <p class="descricao">
+              Assim como o tipo da máquina, aqui vamos deixar o já selecionado
+              padrão gratuito, disponível pelo usuário root; no caso de
+              <i>8 GiB</i> e vamos para a próxima etapa clicando em
+              <span class="proximoBtn">Próximo: Adicionar Tags</span>
+            </p>
+            <img
+              src="./assets/images/10-vm-armazenamento.jpg"
+              alt="vmArmazenamento"
+              class="image"
+              title="Apenas vá para 'Próximo: Adicionar Tags'"
+            />
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 5</p>
+            <p class="descricao">
+              Para agora, vamos adicionar a Tag "Name" no campo onde está
+              <i>Chave</i> e "6dev", sendo que esse valor pode ser qualquer nome
+              que representará a sua máquina na AWS, no campo onde está
+              <i>Valor</i>
+            </p>
+            <p class="descricao">
+              CLique em <span class="proximoBtn">Adicionar Tag</span> para
+              tornar esses campos visíveis e adicionar essa tag "Name - 6dev"
+            </p>
+            <img
+              src="./assets/images/12-vm-tag-name.jpg"
+              alt="vmTagName"
+              class="image"
+              title="Adicione a Tag com chave 'Name' e o valor de sua preferência"
+            />
+            <p class="descricao">
+              E então, vamos para
+              <span class="proximoBtn">Próximo: Configure security group</span>
+            </p>
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 6</p>
+            <img
+              src="./assets/images/13-vm-security-group.jpg"
+              alt="vmSecGroup"
+              class="image"
+              title="Siga as instruções abaixo."
+            />
+            <p class="descricao" id="alerta-foco">
+              Nesta tela temos algumas configurações importante para tornar a
+              nossa máquina um ambiente de servidor web, então siga o
+              passo-a-passo com calma e foco.
+            </p>
+            <p class="descricao">
+              Primeiro, vamos adicionar regras de grupo de segurança, a começar
+              pela de HTTP, ao adicionar, fique tranquilo porquê todas as
+              configurações de porta e IP são preenchidas automaticamente.
+            </p>
+            <p class="descricao">
+              <abbr title="Observação">Obs.:</abbr>
+              <span class="obsSublinhada"
+                >Note que o SSH já vem por padrão, pois é por essa porta a qual
+                conseguimos acessar a máquina virtual a distância, seja via
+                puTTy ou SSH por linha de comando.
+              </span>
+            </p>
+            <p class="descricao">
+              Logo depois, vamos adicionar a regra de HTTPS, liberando assim as
+              duas principais portas de acesso aos protocolos de internet
+              <i>HTTP & HTTPS</i>
+            </p>
+            <p class="descricao">
+              Não se esqueça de alterar o
+              <strong>nome do grupo de segurança</strong> para o nome que
+              desejar; tal como a descrição informando o básico sobre aquele
+              grupo de segurança configurado pra nossa máquina.
+            </p>
+            <p class="descricao">
+              Ao finalizar, podemos prosseguir à
+              <span class="passarBtn">Verificar e Ativar</span>
+            </p>
+          </div>
+          <hr />
+          <div class="subConteudo">
+            <p class="tituloSubCOnteudo">Etapa 7</p>
+            <p class="descricao">
+              Ao confirmar, essa tela será apenas uma tela de verificação das
+              informações descritas da máquina e então da inicialização da
+              máquina/instância.
+            </p>
+            <img
+              src="./assets/images/14-vm-confirmacao.jpg"
+              alt="vmConfirmacao"
+              class="image"
+              title="Confirme as informações da sua instância"
+            />
+            <p class="descricao">
+              Assim que finalizada, basta clicar em
+              <span class="passarBtn">Executar</span>
+            </p>
+          </div>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Assim que executarmos, aparecerá a tela sobre o Par de Chaves para
+            conexão via SSH à nossa máquina; então vamos "criar um novo par de
+            chaves" e nomeá-lo com o nome da nossa máquina virtual.
+          </p>
+          <img
+            src="./assets/images/15-vm-par-chave.jpg"
+            alt="parChave"
+            class="image"
+            title="Salve seu par de chaves em 'Fazer download do par de chaves"
+          />
+          <p class="descricao" id="alerta">
+            Faça o download desse par de chaves e guarde-o num local seguro, se
+            possível, faça um <i><strong>backup</strong></i
+            >, pois caso perca esse par de chaves, você perde também o acesso à
+            instância.
+          </p>
+          <p class="descricao">
+            Assim que o download for finalizado, o botão de
+            <span class="passarBtn">Executar Instância</span> será liberado e
+            você poderá, finalmente, inicializar a sua primeira máquina virtual
+            na nuvem da AWS!
+          </p>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Ao clicar, você será redirecionado à uma tela de confirmação, onde
+            indica que sua instância foi iniciada:
+          </p>
+          <img
+            src="./assets/images/16-vm-criada.jpg"
+            alt="vmCriada"
+            class="image"
+            title="SUa instância foi iniciada com sucesso, parabéns!"
+          />
+          <p class="descricao">
+            Vamos voltar ao EC2 e confirmar se nossa instância já está lá!
+          </p>
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Para voltar, segue o mesmo caminho, do início entrando na barra de
+            pesquisa e digitando "EC2", selecionando-o clicando em cima do nome.
+          </p>
+          <img
+            src="./assets/images/17-ec2-pesquisa.jpg"
+            alt="ec2-pesquisa"
+            class="image"
+            title="Barra de Pesquisa - Selecione EC2"
+          />
+          <hr />
+          <p class="descricao">
+            Porém dessa vez, iremos entrar em
+            <span class="proximoBtn">Instâncias</span>
+          </p>
+          <img
+            src="./assets/images/18-ec2-menu.jpg"
+            alt="ec2-menu"
+            class="image"
+            title="Tela principal do EC2 - MENU"
+          />
+        </div>
+        <div class="conteudo">
+          <p class="descricao">
+            Ao abrir, abrirá uma tela contendo uma tabela com todas as
+            instâncias que estão rodando naquela conta.
+          </p>
+          <img
+            src="./assets/images/19-vm-ip.jpg"
+            alt="vmIp"
+            class="image"
+            title="Selecione sua instância e salve o IP dela"
+          />
+          <p class="descricao">
+            Por agora, vamos apenas deixar nessa tela para pegarmos o IP público
+            da nossa máquina e então, mais pra frente, entraremos em mais
+            detalhes desse IP.
+          </p>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p class="rodape">By SIX-DEV-TEAM</p>
+    </footer>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"
+  ></script>
 </html>
